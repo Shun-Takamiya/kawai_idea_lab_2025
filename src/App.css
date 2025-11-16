@@ -72,13 +72,47 @@ body {
 }
 
 .search-bar {
+  display: flex; /* 横並びにする */
+  align-items: center; /* 縦位置を中央に */
+  gap: 8px; /* 要素間の隙間 */
   background-color: #f4f7f6;
   border-radius: 12px;
-  padding: 12px 16px;
+  padding: 8px 12px; /* 高さを調整 */
   margin-bottom: 16px;
-  color: #333;
+}
+
+.search-icon {
+  font-size: 16px;
+  color: #777;
+}
+
+.search-input {
+  flex: 1; /* 残りのスペースをすべて使う */
+  border: none;
+  outline: none;
+  background-color: transparent; /* 親の背景色(f4f7f6)を使う */
   font-size: 15px;
   font-weight: 500;
+  color: #333;
+}
+.search-input::placeholder {
+  color: #999;
+  font-weight: 400;
+}
+
+.search-button {
+  background-color: #007bff; /* 青色 */
+  color: white;
+  border: none;
+  border-radius: 8px; /* 検索バーの角丸より少し控えめに */
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.search-button:hover {
+  background-color: #0056b3;
 }
 
 .tag-cloud {
@@ -87,7 +121,12 @@ body {
   gap: 8px;
 }
 
+/* src/App.css に追記 */
+
+/* --- フィルター機能用のスタイル --- */
 .search-tag {
+  cursor: pointer; /* クリックできることを示す */
+  transition: background-color 0.2s, color 0.2s;
   background-color: #f0f4f8; 
   color: #4a69bd; 
   font-size: 12px;
@@ -95,6 +134,20 @@ body {
   padding: 6px 12px;
   border-radius: 16px;
 }
+
+/* 選択中のタグのスタイル (緑系) */
+.search-tag.active {
+  background-color: #006442; /* 濃い緑 */
+  color: #ffffff; /* 白文字 */
+}
+
+/* 検索結果が0件のときのメッセージ */
+.no-mentors-message {
+  padding: 40px 20px;
+  text-align: center;
+  color: #777;
+}
+
 
 /* --------------------------------- */
 /* メンターリスト */
