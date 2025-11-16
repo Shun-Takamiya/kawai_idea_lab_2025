@@ -63,7 +63,13 @@ return (
     {/* --- ▲ 変更点 --- */}
     </div>
 
-    <button className="contact-button">面談をリクエスト</button>
+    <button 
+        className="contact-button"
+        // onClickイベントで /chat/:id パスに遷移
+        onClick={() => navigate(`/chat/${mentor.id}`)} 
+    >
+        面談をリクエスト
+    </button>
 </div>
 );
 };

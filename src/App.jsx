@@ -18,6 +18,8 @@ import './MyPage.css';
 import PlanPage from './PlanPage.jsx';
 import './PlanPage.css';
 
+import ChatPage from './ChatPage.jsx';
+import './ChatPage.css';
 
 // (MentorListPageコンポーネントは変更なし。中身は検索機能など)
 const MentorListPage = () => {
@@ -131,6 +133,8 @@ function App() {
             {/* --- ▼ 2. /plan のルートを追加 ▼ --- */}
             <Route path="/plan" element={<PlanPage />} />
             {/* --- ▲ 2. /plan のルートを追加 ▲ --- */}
+            <Route path="/chat/:id" element={<ChatPage />} />
+
           </Routes>
 
         </div>
