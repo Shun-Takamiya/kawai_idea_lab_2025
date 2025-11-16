@@ -8,11 +8,15 @@ animation: fadeIn 0.3s ease-out;
 /* 1. ヘッダーロゴ */
 .mypage-header {
 margin-bottom: 24px;
+width: 100vw; /* 画面の幅 100% */
+margin-left: -20px; /* 左のパディング(20px)を打ち消す */
+margin-top: -20px; /* 上のパディング(20px)を打ち消す */
 }
 
 .logo-img {
-height: 250px;
-width: auto;
+width: 100%; /* 幅を100%にする */
+height: auto; /* 高さは自動調整 */
+object-fit: cover; /* 画像の比率を保ったまま全体を覆う */
 }
 
 /* 2. ユーザープロフィール */
