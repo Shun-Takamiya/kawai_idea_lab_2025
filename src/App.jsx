@@ -15,6 +15,9 @@ import MyPage from './MyPage.jsx';
 import './MyPage.css';
 // --- ▲ 2. マイページ関連をインポート ▲ ---
 
+import PlanPage from './PlanPage.jsx';
+import './PlanPage.css';
+
 
 // (MentorListPageコンポーネントは変更なし。中身は検索機能など)
 const MentorListPage = () => {
@@ -120,23 +123,19 @@ function App() {
       <div className="smartphone-container">
         <div className="screen">
           
-          {/* --- 4. ルーティング設定を変更 --- */}
           <Routes>
-            {/* パスが "/" (ホームページ) の場合、マイページを表示 */}
             <Route path="/" element={<MyPage />} />
-            
-            {/* "/search" の場合に、メンターリスト(検索ページ)を表示 */}
             <Route path="/search" element={<MentorListPage />} />
-            
-            {/* パスが "/mentor/1" や "/mentor/2" の場合 */}
             <Route path="/mentor/:id" element={<MentorDetailPage />} />
+            
+            {/* --- ▼ 2. /plan のルートを追加 ▼ --- */}
+            <Route path="/plan" element={<PlanPage />} />
+            {/* --- ▲ 2. /plan のルートを追加 ▲ --- */}
           </Routes>
-          {/* ------------------------------- */}
 
         </div>
       </div>
     </div>
   );
 }
-
 export default App;

@@ -71,7 +71,7 @@ return (
         <span>メンターを探す</span>
         <span className="arrow-icon">→</span>
     </Link>
-    <Link to="/plan" className="action-button disabled">
+    <Link to="/plan" className="action-button secondary">
         <span>探究を計画する</span>
         <span className="arrow-icon">→</span>
     </Link>
