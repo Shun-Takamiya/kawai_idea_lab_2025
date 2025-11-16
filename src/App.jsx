@@ -1,30 +1,31 @@
 // src/App.jsx
 
-import React, { useState } from 'react'; // useState をインポート
+import React, { useState } from 'react';
 import './App.css';
 import MentorCard from './MentorCard.jsx';
 import { mentors, searchTags } from './mockData.js';
 
-import { Routes, Route } from 'react-router-dom';
+// 1. Link をインポート
+import { Routes, Route, Link } from 'react-router-dom';
 import MentorDetailPage from './MentorDetailPage.jsx';
 import './MentorDetailPage.css'; 
 
-// 4. リスト表示する部分の新しいコンポーネント
+// --- ▼ 2. マイページ関連をインポート ▼ ---
+import MyPage from './MyPage.jsx';
+import './MyPage.css';
+// --- ▲ 2. マイページ関連をインポート ▲ ---
+
+
+// (MentorListPageコンポーネントは変更なし。中身は検索機能など)
 const MentorListPage = () => {
   const [activeTags, setActiveTags] = useState([]);
-  
-  // --- 変更点 (ここから) ---
-  // 1. 入力中の検索キーワードを管理
   const [searchTerm, setSearchTerm] = useState("");
-  // 2. 検索ボタンが押された時のキーワードを管理
   const [submittedSearchTerm, setSubmittedSearchTerm] = useState("");
 
-  // 3. 検索ボタンがクリックされたときの処理
   const handleSearchSubmit = () => {
     setSubmittedSearchTerm(searchTerm);
   };
-  // --- 変更点 (ここまで) ---
-
+  
   const handleTagClick = (tag) => {
     if (activeTags.includes(tag)) {
       setActiveTags(activeTags.filter(t => t !== tag));
@@ -33,37 +34,34 @@ const MentorListPage = () => {
     }
   };
 
-  // 4. メンターを絞り込むロジック
   const filteredMentors = mentors.filter(mentor => {
-    // 4-1. タグでの絞り込み
     const tagMatch = activeTags.length === 0 
       ? true 
       : activeTags.every(activeTag => mentor.tags.includes(activeTag));
 
-    // --- 変更点 (ここから) ---
-    // 4-2. 検索キーワードでの絞り込み
     const searchTermLower = submittedSearchTerm.toLowerCase().trim();
     
-    // 検索語が空なら、常に true (絞り込まない)
     if (searchTermLower === "") {
-      return tagMatch; // タグの絞り込み結果だけを返す
+      return tagMatch;
     }
 
-    // 検索語がある場合、名前・所属・タグのいずれかに含まれるかチェック
     const searchMatch = 
       mentor.name.toLowerCase().includes(searchTermLower) ||
       mentor.affiliation.toLowerCase().includes(searchTermLower) ||
       mentor.tags.some(tag => tag.toLowerCase().includes(searchTermLower));
 
-    // 両方に一致する必要がある
     return tagMatch && searchMatch;
-    // --- 変更点 (ここまで) ---
   });
 
   return (
     <>
       <header className="app-header">
-        {/* --- 変更点: 検索バーを <input> と <button> に変更 --- */}
+        {/* --- 3. マイページに戻るボタンを追加 --- */}
+        <div className="header-navigation">
+          <Link to="/" className="back-to-mypage-button">&lt; マイページ</Link>
+        </div>
+        {/* ---------------------------------- */}
+        
         <div className="search-bar">
           <span className="search-icon">🔍</span>
           <input
@@ -72,7 +70,6 @@ const MentorListPage = () => {
             className="search-input"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            // Enterキーでも検索できるように
             onKeyDown={(e) => {
               if (e.key === 'Enter') handleSearchSubmit();
             }}
@@ -81,7 +78,6 @@ const MentorListPage = () => {
             検索
           </button>
         </div>
-        {/* --- 変更点 (ここまで) --- */}
         
         <div className="tag-cloud">
           <span 
@@ -119,15 +115,24 @@ const MentorListPage = () => {
 
 
 function App() {
-  // ... (Appコンポーネントの残りは変更なし)
   return (
     <div className="app-background">
       <div className="smartphone-container">
         <div className="screen">
+          
+          {/* --- 4. ルーティング設定を変更 --- */}
           <Routes>
-            <Route path="/" element={<MentorListPage />} />
+            {/* パスが "/" (ホームページ) の場合、マイページを表示 */}
+            <Route path="/" element={<MyPage />} />
+            
+            {/* "/search" の場合に、メンターリスト(検索ページ)を表示 */}
+            <Route path="/search" element={<MentorListPage />} />
+            
+            {/* パスが "/mentor/1" や "/mentor/2" の場合 */}
             <Route path="/mentor/:id" element={<MentorDetailPage />} />
           </Routes>
+          {/* ------------------------------- */}
+
         </div>
       </div>
     </div>

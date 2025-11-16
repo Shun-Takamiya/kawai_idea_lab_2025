@@ -148,6 +148,23 @@ body {
   color: #777;
 }
 
+/* src/App.css に追記 */
+
+.header-navigation {
+  margin-bottom: 12px;
+}
+
+.back-to-mypage-button {
+  background: none;
+  border: none;
+  color: #007bff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 0;
+  text-decoration: none;
+}
+
 
 /* --------------------------------- */
 /* メンターリスト */
