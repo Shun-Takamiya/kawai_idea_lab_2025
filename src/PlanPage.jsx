@@ -19,8 +19,8 @@ const [date, setDate] = useState(new Date()); // 今日の日付を初期値に
 
 // Todo機能のためのState
 const [todos, setTodos] = useState([
-{ id: 1, text: '先行研究を3つ調べる', completed: false },
-{ id: 2, text: '担当メンターに連絡する', completed: false },
+{ id: 1, text: '実験手法の計画をとりあえず考えてみる', completed: false },
+{ id: 2, text: '高宮メンターに連絡する', completed: false },
 ]);
 const [newTodo, setNewTodo] = useState('');
 
@@ -55,9 +55,9 @@ return (
     <h2>目標設定</h2>
     <div className="goal-card">
         <label>最終目標</label>
-        <p>VR技術が学習効率に与える影響について論文を完成させる</p>
+        <p>VR技術を用いて視力回復のトレーニングを行う</p>
         <label>今週の目標</label>
-        <p>関連する先行研究のサーベイを終える</p>
+        <p>Unityを触れてみる</p>
     </div>
     </section>
 

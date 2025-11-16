@@ -33,7 +33,7 @@ const MyPage = () => {
   // mockDataからデモ用のメンターデータを取得
   // (実際はログインユーザー情報から取得する)
 const primaryMentor = mentors.find(m => m.id === 2);
-const secondaryMentor = mentors.find(m => m.id === 3);
+const secondaryMentor = mentors.find(m => m.id === 1);
 
 return (
 <div className="mypage-container">
